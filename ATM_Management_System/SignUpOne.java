@@ -248,7 +248,7 @@ public class SignUpOne extends JFrame implements ActionListener {
             }
             if(flag==0){
                 dispose();
-                SignUpTwo s = new SignUpTwo();
+                SignUpTwo s = new SignUpTwo(formNo);
             }
         }
         if(e.getSource()==clear2){

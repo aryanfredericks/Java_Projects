@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener {
     JButton login,SignUp,exit,clear;
@@ -106,7 +107,21 @@ public class Login extends JFrame implements ActionListener {
             SignUpOne s = new SignUpOne();
         }
         else if(a.getSource()==login){
-            JOptionPane.showMessageDialog(this,"ACCOUNT NOT FOUND\nPLEASE SIGNUP .","ERROR",JOptionPane.WARNING_MESSAGE);
+            connect con = new connect();
+            String cardNumber = cardNoTextField.getText();
+            String pinNumber = pinNoTextField.getText();
+            String query = "select * from currect_users where accountNumber = '"+cardNumber+"' and pinNumber ='"+pinNumber+"' ";
+            try{
+                ResultSet rs= con.s.executeQuery(query);
+                if(rs.next()){
+                    dispose();
+                    new atm_homepage();
+                }
+
+            }catch(Exception ad){
+                System.out.println(ad);
+            }
+
         }
         else if(a.getSource()==exit){
             dispose();

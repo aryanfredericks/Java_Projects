@@ -10,7 +10,9 @@ public class SignUpTwo extends JFrame implements ActionListener {
     JTextField panTextField,aadharTextField;
     JRadioButton scYes,scNo;
     JButton next,clear2;
-    public SignUpTwo(){
+    String fn;
+    public SignUpTwo(String formNo){
+        this.fn=formNo;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(300,20);
         setLayout(null);
@@ -121,7 +123,7 @@ public class SignUpTwo extends JFrame implements ActionListener {
         clear2.setFont(new Font("MV Lucida Console",Font.BOLD,17));
         signUpBcg.add(clear2);
 
-        next =  new JButton("NEXT");
+        next =  new JButton("SUBMIT");
         next.setFocusable(false);
         next.setBounds(650,630,100,50);
         next.setForeground(Color.WHITE);
@@ -159,7 +161,7 @@ public class SignUpTwo extends JFrame implements ActionListener {
                 else{
                     //connecting to database
                     connect conn = new connect();
-                    String query = "insert into signup2 values ('"+religion+"','"+income+"','"+education+"','"+panNo+"','"+aadharNo+"','"+seniorc+"')";
+                    String query = "insert into signup2 values ('"+fn+"','"+religion+"','"+income+"','"+education+"','"+panNo+"','"+aadharNo+"','"+seniorc+"')";
                     conn.s.executeUpdate(query);
                 }
             }
@@ -168,7 +170,7 @@ public class SignUpTwo extends JFrame implements ActionListener {
             }
             if(flag==0){
                 dispose();
-                SignUpThree s3 = new SignUpThree();
+                SignUpThree s3 = new SignUpThree(fn);
             }
         }
         if(e.getSource()==clear2){
@@ -181,6 +183,6 @@ public class SignUpTwo extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new SignUpTwo();
+        new SignUpTwo("");
     }
 }
