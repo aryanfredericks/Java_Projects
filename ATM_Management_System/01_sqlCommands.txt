@@ -1,0 +1,43 @@
+create database bank_management;
+
+
+use bank_management;
+
+
+create table signup(
+form_Number varchar(10),
+name varchar(50),
+email varchar(50),
+marital_status varchar(50),
+father_name varchar(50),
+date_of_birth varchar(50),
+address varchar(50),
+city varchar(50),
+state varchar(50),
+pincode varchar(50)
+);
+
+create table signup2(
+form_Number varchar(10),
+religion varchar(10),
+income varchar(50),
+education varchar(50),
+pan_card_number varchar(50),
+aadhar_card_number varchar(50),
+senior_citizen varchar(50)
+);
+
+create table signup3(
+form_Number varchar(10),
+account_type varchar(100),
+card_number varchar(50),
+pin_number varchar(50),
+services varchar(100)
+);
+
+create table bank_transaction_records(
+pin varchar(10),
+date varchar(50),
+type varchar(20),
+amount varchar(10)
+);
