@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
-public class deposit extends JFrame implements ActionListener {
+public class file6_Deposit extends JFrame implements ActionListener {
     JTextField depositAmount;
     JButton back, deposit;
     String pin;
@@ -22,7 +22,7 @@ public class deposit extends JFrame implements ActionListener {
             return true;
         }
     }
-    public deposit(String pin){
+    public file6_Deposit(String pin){
         this.pin=pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(370,0);
@@ -69,7 +69,7 @@ public class deposit extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new deposit("");
+        new file6_Deposit("");
     }
 
     @Override
@@ -84,12 +84,12 @@ public class deposit extends JFrame implements ActionListener {
                     flag=1;
                 }
                 else{
-                    connect c = new connect();
+                    file12_jdbcConnectivity c = new file12_jdbcConnectivity();
                     String query = "insert into bank_transaction_records values ('"+pin+"','"+date+"','Deposit','"+getDepositAmount+"');";
                     c.s.executeUpdate(query);
                     JOptionPane.showMessageDialog(null,"Rs "+getDepositAmount+" Deposited Succesfully");
                     dispose();
-                    new atm_homepage(pin);
+                    new file5_atm_homepage(pin);
                 }
             }catch(Exception p){
                 System.out.println(p);
@@ -97,7 +97,7 @@ public class deposit extends JFrame implements ActionListener {
         }
         if (e.getSource()==back){
             dispose();
-            new atm_homepage(pin);
+            new file5_atm_homepage(pin);
         }
     }
 }

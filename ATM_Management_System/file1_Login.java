@@ -1,18 +1,16 @@
 package Java_Projects.ATM_Management_System;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
-public class Login extends JFrame implements ActionListener {
+public class file1_Login extends JFrame implements ActionListener {
     JButton login,SignUp,exit,clear;
     JTextField cardNoTextField;
     JPasswordField pinNoTextField;
-    public Login(){
+    public file1_Login(){
         setSize(800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(300,100);
@@ -105,10 +103,10 @@ public class Login extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent a){
         if(a.getSource()==SignUp){
             dispose();
-            new SignUpOne();
+            new file2_SignUpOne();
         }
         else if(a.getSource()==login){
-            connect con = new connect();
+            file12_jdbcConnectivity con = new file12_jdbcConnectivity();
             String cardNumber = cardNoTextField.getText();
             String pinNumber = pinNoTextField.getText();
             String query = "select * from current_users where accountNumber = '"+cardNumber+"' and pinNumber ='"+pinNumber+"' ";
@@ -116,7 +114,7 @@ public class Login extends JFrame implements ActionListener {
                 ResultSet rs= con.s.executeQuery(query);
                 if(rs.next()){
                     dispose();
-                    new atm_homepage(pinNumber);
+                    new file5_atm_homepage(pinNumber);
                 }else{
                     JOptionPane.showMessageDialog(this,"Incorrect pin or account number. \n Please sign up if you have not");
                 }
@@ -135,7 +133,6 @@ public class Login extends JFrame implements ActionListener {
         }
     }
     public static void main(String[] args) {
-        new Login();
-
+        new file1_Login();
     }
 }

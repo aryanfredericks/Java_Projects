@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class atm_homepage extends JFrame implements ActionListener {
+public class file5_atm_homepage extends JFrame implements ActionListener {
     JButton deposit, withdraw, fastcash, statement, exit, pinchange, balanceCheck;
     String pin;
 
-    public atm_homepage(String pin) {
+    public file5_atm_homepage(String pin) {
         this.pin = pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(370, 0);
@@ -86,7 +86,7 @@ public class atm_homepage extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new atm_homepage("");
+        new file5_atm_homepage("");
     }
 
     @Override
@@ -95,22 +95,22 @@ public class atm_homepage extends JFrame implements ActionListener {
             dispose();
         } else if (e.getSource() == deposit) {
             dispose();
-            new deposit(pin);
+            new file6_Deposit(pin);
         } else if (e.getSource() == withdraw) {
             dispose();
-            new withdraw(pin);
+            new file7_withdraw(pin);
         } else if (e.getSource() == fastcash) {
             dispose();
-            new FastCash(pin);
+            new file8_fastcash(pin);
         } else if (e.getSource()==pinchange) {
             dispose();
-            new PinChange(pin);
+            new file9_pinchange(pin);
         }else if (e.getSource()==balanceCheck) {
             dispose();
-            new CheckBalance(pin);
+            new file10_balance(pin);
         }else if (e.getSource()==statement) {
             dispose();
-            new statement(pin);
+            new file11_statement(pin);
         }
     }
 }

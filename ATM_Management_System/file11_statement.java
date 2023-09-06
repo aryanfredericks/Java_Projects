@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 
-public class statement extends JFrame{
+public class file11_statement extends JFrame{
     String pin ;
-    public statement(String pin){
+    public file11_statement(String pin){
         this.pin=pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(50,50);
@@ -30,7 +30,7 @@ public class statement extends JFrame{
         cardNo.setFont(new Font("Comic Sans", 1, 15));
         add(cardNo);
         try{
-            connect con = new connect();
+            file12_jdbcConnectivity con = new file12_jdbcConnectivity();
             ResultSet rs = con.s.executeQuery("select * from current_users where pinNumber='"+pin+"'");
             while(rs.next()){
                 cardNo.setText("Card Number : "+"XXXX-XXXX-XXXX-"+rs.getString("accountNumber").substring(12,16));
@@ -40,7 +40,7 @@ public class statement extends JFrame{
             System.out.println(g);
         }
         try{
-            connect con = new connect();
+            file12_jdbcConnectivity con = new file12_jdbcConnectivity();
             ResultSet rs = con.s.executeQuery("select * from bank_transaction_records where pin='"+pin+"'");
             while(rs.next()){
                 statement.setText(statement.getText() + "<html>" +rs.getString("date") + "@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;" + rs.getString("type") +"@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;" +rs.getString("amount"));
@@ -55,7 +55,7 @@ public class statement extends JFrame{
 
     }
     public static void main(String[] args) {
-        new statement("");
+        new file11_statement("");
     }
 
 

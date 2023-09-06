@@ -6,12 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class SignUpThree extends JFrame implements ActionListener{
+public class file4_SignUpThree extends JFrame implements ActionListener{
     String formNumber;
     JRadioButton type1,type2,type3,type4;
     JCheckBox c1,c2,c3,c4,c5,c6,c7;
     JButton next;
-    public SignUpThree(String fn){
+    public file4_SignUpThree(String fn){
         this.formNumber=fn;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(300,20);
@@ -136,7 +136,7 @@ public class SignUpThree extends JFrame implements ActionListener{
         setVisible(true);
     }
     public static void main(String[] args) {
-        new SignUpThree("");
+        new file4_SignUpThree("");
     }
 
     @Override
@@ -177,7 +177,7 @@ public class SignUpThree extends JFrame implements ActionListener{
                 }
                 else{
                     //connecting to database
-                    connect conn = new connect();
+                    file12_jdbcConnectivity conn = new file12_jdbcConnectivity();
                     String query1 = "insert into signup3 values ('"+formNumber+"','"+accountType+"','"+cardNo+"','"+pinNo+"','"+services+"')";
                     String query2 = "insert into current_users values ('"+formNumber+"','"+cardNo+"','"+pinNo+"')";
                     conn.s.executeUpdate(query1);
@@ -186,14 +186,14 @@ public class SignUpThree extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null,"Card Number :"+cardNo+"\n"+"Pin Number : "+pinNo);
                 }
                 dispose();
-                new deposit(pinNo);
+                new file6_Deposit(pinNo);
             }
             catch(Exception vf){
                 System.out.println(vf);
             }
             if (flag==0){
                 dispose();
-                new Login();
+                new file1_Login();
             }
         }
     }

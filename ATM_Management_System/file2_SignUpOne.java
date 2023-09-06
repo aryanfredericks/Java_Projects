@@ -4,18 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
 
-public class SignUpOne extends JFrame implements ActionListener {
+public class file2_SignUpOne extends JFrame implements ActionListener {
     JTextField nameText,fnameText,emailText,addressText,cityText,stateText,pincodeText;
     JRadioButton genderMale,genderFemale,marriedOther,marriedSingle,marriedMarried,others;
     JDateChooser dobChooser;
     JButton clear2,next;
     int random;
-    public SignUpOne(){
+    public file2_SignUpOne(){
         Random r = new Random();
         random=  r.nextInt(10000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -192,7 +191,7 @@ public class SignUpOne extends JFrame implements ActionListener {
         setVisible(true);
     }
     public static void main(String[] args) {
-        new SignUpOne();
+        new file2_SignUpOne();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -238,7 +237,7 @@ public class SignUpOne extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this,"Invalid Email\nMissing \"@\"","ERROR",JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    connect c = new connect();
+                    file12_jdbcConnectivity c = new file12_jdbcConnectivity();
                     String query = "insert into signup values ('"+formNo+"','"+name+"','"+gender+"','"+married+"','"+fname+"','"+dob+"','"+address+"','"+city+"','"+state+"','"+pincode+"')";
                     c.s.executeUpdate(query);
                 }
@@ -248,7 +247,7 @@ public class SignUpOne extends JFrame implements ActionListener {
             }
             if(flag==0){
                 dispose();
-                SignUpTwo s = new SignUpTwo(formNo);
+                file3_SignUpTwo s = new file3_SignUpTwo(formNo);
             }
         }
         if(e.getSource()==clear2){

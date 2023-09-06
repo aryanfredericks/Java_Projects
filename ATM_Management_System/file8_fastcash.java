@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.Date;
 
-public class FastCash extends JFrame implements ActionListener{
+public class file8_fastcash extends JFrame implements ActionListener{
     JButton hundred,fiveHundred,thousand,twoThousand,fiveThousand,tenThousand,back;
     String pin;
-    public FastCash(String pin){
+    public file8_fastcash(String pin){
         this.pin=pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(370,0);
@@ -85,17 +85,17 @@ public class FastCash extends JFrame implements ActionListener{
         setVisible(true);
     }
     public static void main(String[] args) {
-        new FastCash("");
+        new file8_fastcash("");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==back){
             dispose();
-            new atm_homepage(pin);
+            new file5_atm_homepage(pin);
         }
         else{
-            connect c = new connect();
+            file12_jdbcConnectivity c = new file12_jdbcConnectivity();
             String amount = ((JButton)e.getSource()).getText();
             try{
                 ResultSet rs = c.s.executeQuery("select * from bank_transaction_records where pin = '"+pin+"'");
@@ -117,7 +117,7 @@ public class FastCash extends JFrame implements ActionListener{
                 c.s.executeUpdate(query);
                 JOptionPane.showMessageDialog(null,"Rs "+amount+" Withdrawn Succesfully");
                 dispose();
-                new atm_homepage(pin);
+                new file5_atm_homepage(pin);
             }catch(Exception ag){
                 System.out.println(ag);
             }

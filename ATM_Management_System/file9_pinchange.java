@@ -1,16 +1,15 @@
 package Java_Projects.ATM_Management_System;
 
 import javax.swing.*;
-import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PinChange extends JFrame implements ActionListener {
+public class file9_pinchange extends JFrame implements ActionListener {
     JPasswordField currentPin,newPin;
     JButton submit,back;
     String pin;
-    public PinChange(String pin){
+    public file9_pinchange(String pin){
         this.pin = pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(370, 0);
@@ -65,7 +64,7 @@ public class PinChange extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==back){
             dispose();
-            new atm_homepage(pin);
+            new file5_atm_homepage(pin);
         }
         if (e.getSource()==submit){
 
@@ -82,7 +81,7 @@ public class PinChange extends JFrame implements ActionListener {
                 if(nPin.equals("")){
                     JOptionPane.showMessageDialog(null,"Please Enter New Pin");
                 }
-                connect c = new connect();
+                file12_jdbcConnectivity c = new file12_jdbcConnectivity();
                 String q1 = "update bank_transaction_records set pin='"+nPin+"' where pin='"+pin+"'";
                 String q2 = "update signup3 set pin_number='"+nPin+"' where pin_number='"+pin+"'";
                 String q3 = "update current_users set pinNumber='"+nPin+"' where pinNumber='"+pin+"'";
@@ -91,19 +90,19 @@ public class PinChange extends JFrame implements ActionListener {
                 c.s.executeUpdate(q3);
                 JOptionPane.showMessageDialog(null,"Pin Changed Successfully");
                 dispose();
-                new atm_homepage(nPin);
+                new file5_atm_homepage(nPin);
             }catch(Exception ac){
                 System.out.println(ac);
             }
         }
         else{
             dispose();
-            new atm_homepage(pin);
+            new file5_atm_homepage(pin);
         }
     }
 
     public static void main(String[] args) {
-        new PinChange("");
+        new file9_pinchange("");
     }
 
 }

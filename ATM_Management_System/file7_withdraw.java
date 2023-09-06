@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
-public class withdraw extends JFrame implements ActionListener {
+public class file7_withdraw extends JFrame implements ActionListener {
     JTextField withdrawAmount;
     JButton back, withdraw;
     String pin;
@@ -22,7 +22,7 @@ public class withdraw extends JFrame implements ActionListener {
             return true;
         }
     }
-    public withdraw(String pin){
+    public file7_withdraw(String pin){
         this.pin=pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(370,0);
@@ -69,7 +69,7 @@ public class withdraw extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new withdraw("");
+        new file7_withdraw("");
     }
 
     @Override
@@ -84,7 +84,7 @@ public class withdraw extends JFrame implements ActionListener {
                     flag=1;
                 }
                 else{
-                    connect c = new connect();
+                    file12_jdbcConnectivity c = new file12_jdbcConnectivity();
                     String query = "insert into bank_transaction_records values ('"+pin+"','"+date+"','Withdrawal','"+withdrawAmount+"');";
                     c.s.executeQuery(query);
                     JOptionPane.showMessageDialog(null,"Rs "+getWithDraw+" Withdrawn Succesfully");
@@ -94,12 +94,12 @@ public class withdraw extends JFrame implements ActionListener {
             }
             if(flag==0){
                 dispose();
-                new atm_homepage(pin);
+                new file5_atm_homepage(pin);
             }
         }
         if (e.getSource()==back){
             dispose();
-            new atm_homepage(pin);
+            new file5_atm_homepage(pin);
         }
     }
 }

@@ -5,12 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.sql.*;
 
-public class CheckBalance extends JFrame implements ActionListener {
+public class file10_balance extends JFrame implements ActionListener {
     String pin;
     JButton back;
-    public CheckBalance(String pin){
+    public file10_balance(String pin){
         this.pin=pin;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(370,0);
@@ -39,7 +38,7 @@ public class CheckBalance extends JFrame implements ActionListener {
         atmBcg.add(back);
 
         try{
-            connect c = new connect();
+            file12_jdbcConnectivity c = new file12_jdbcConnectivity();
             ResultSet rs = c.s.executeQuery("select * from bank_transaction_records where pin = '"+pin+"'");
             int balance = 0;
             while(rs.next()){
@@ -62,11 +61,11 @@ public class CheckBalance extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==back){
             dispose();
-            new atm_homepage(pin);
+            new file5_atm_homepage(pin);
         }
     }
 
     public static void main(String[] args) {
-        new CheckBalance("");
+        new file10_balance("");
     }
 }

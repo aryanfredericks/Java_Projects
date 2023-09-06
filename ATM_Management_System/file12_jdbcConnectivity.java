@@ -1,6 +1,6 @@
 package Java_Projects.ATM_Management_System;
 import java.sql.*;
-public class connect {
+public class file12_jdbcConnectivity {
     /*
     Steps used in jdbc connectivity:
     1. Register The Driver
@@ -11,7 +11,7 @@ public class connect {
      */
     Connection c;
     Statement s;
-    public connect(){
+    public file12_jdbcConnectivity(){
         //step2Requirement
 
         try{

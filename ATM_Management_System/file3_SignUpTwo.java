@@ -3,15 +3,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class SignUpTwo extends JFrame implements ActionListener {
+public class file3_SignUpTwo extends JFrame implements ActionListener {
     JComboBox religionComBox,incomeComBox,eduComBox;
     JTextField panTextField,aadharTextField;
     JRadioButton scYes,scNo;
     JButton next,clear2;
     String fn;
-    public SignUpTwo(String formNo){
+    public file3_SignUpTwo(String formNo){
         this.fn=formNo;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(300,20);
@@ -160,7 +159,7 @@ public class SignUpTwo extends JFrame implements ActionListener {
                 }
                 else{
                     //connecting to database
-                    connect conn = new connect();
+                    file12_jdbcConnectivity conn = new file12_jdbcConnectivity();
                     String query = "insert into signup2 values ('"+fn+"','"+religion+"','"+income+"','"+education+"','"+panNo+"','"+aadharNo+"','"+seniorc+"')";
                     conn.s.executeUpdate(query);
                 }
@@ -170,7 +169,7 @@ public class SignUpTwo extends JFrame implements ActionListener {
             }
             if(flag==0){
                 dispose();
-                SignUpThree s3 = new SignUpThree(fn);
+                file4_SignUpThree s3 = new file4_SignUpThree(fn);
             }
         }
         if(e.getSource()==clear2){
@@ -183,6 +182,6 @@ public class SignUpTwo extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new SignUpTwo("");
+        new file3_SignUpTwo("");
     }
 }
