@@ -171,7 +171,7 @@ public class SignUpThree extends JFrame implements ActionListener{
                 services+="Cheque Book";
             }
             try{
-                if(accountType.equals("") || !c7.isSelected()){
+                if(accountType.equals("null") || !c7.isSelected()){
                     flag=1;
                     JOptionPane.showMessageDialog(null,"Account type required");
                 }
@@ -185,13 +185,15 @@ public class SignUpThree extends JFrame implements ActionListener{
 
                     JOptionPane.showMessageDialog(null,"Card Number :"+cardNo+"\n"+"Pin Number : "+pinNo);
                 }
+                dispose();
+                new deposit(pinNo);
             }
             catch(Exception vf){
                 System.out.println(vf);
             }
             if (flag==0){
                 dispose();
-
+                new Login();
             }
         }
     }

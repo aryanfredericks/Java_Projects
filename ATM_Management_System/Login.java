@@ -2,10 +2,10 @@ package Java_Projects.ATM_Management_System;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener {
@@ -54,6 +54,7 @@ public class Login extends JFrame implements ActionListener {
 
         cardNoTextField =  new JTextField();
         cardNoTextField.setVisible(true);
+        cardNoTextField.setBorder( new EtchedBorder());
         cardNoTextField.setBounds(270,190,400,40);
         cardNoTextField.setFont(new Font("MV Boli",Font.BOLD,20));
         backGroundLabel.add(cardNoTextField);
@@ -104,22 +105,24 @@ public class Login extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent a){
         if(a.getSource()==SignUp){
             dispose();
-            SignUpOne s = new SignUpOne();
+            new SignUpOne();
         }
         else if(a.getSource()==login){
             connect con = new connect();
             String cardNumber = cardNoTextField.getText();
             String pinNumber = pinNoTextField.getText();
-            String query = "select * from currect_users where accountNumber = '"+cardNumber+"' and pinNumber ='"+pinNumber+"' ";
+            String query = "select * from current_users where accountNumber = '"+cardNumber+"' and pinNumber ='"+pinNumber+"' ";
             try{
                 ResultSet rs= con.s.executeQuery(query);
                 if(rs.next()){
                     dispose();
-                    new atm_homepage();
+                    new atm_homepage(pinNumber);
+                }else{
+                    JOptionPane.showMessageDialog(this,"Incorrect pin or account number. \n Please sign up if you have not");
                 }
 
-            }catch(Exception ad){
-                System.out.println(ad);
+            }catch(Exception e){
+                System.out.println(e);
             }
 
         }
