@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.Date;
 
 public class file7_withdraw extends JFrame implements ActionListener {
@@ -80,22 +81,36 @@ public class file7_withdraw extends JFrame implements ActionListener {
                 String getWithDraw = withdrawAmount.getText();
                 Date date= new Date();
                 if (!isDigit(getWithDraw)||getWithDraw.equals("")){
-                    JOptionPane.showMessageDialog(this,"AMOUNT CONTAINS SPECIAL CHARACHTERS","INVALID",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Invalid charachters","INVALID",JOptionPane.WARNING_MESSAGE);
                     flag=1;
                 }
                 else{
                     file12_jdbcConnectivity c = new file12_jdbcConnectivity();
-                    String query = "insert into bank_transaction_records values ('"+pin+"','"+date+"','Withdrawal','"+withdrawAmount+"');";
-                    c.s.executeQuery(query);
-                    JOptionPane.showMessageDialog(null,"Rs "+getWithDraw+" Withdrawn Succesfully");
+                    ResultSet rs = c.s.executeQuery("select * from bank_transaction_records where pin = '"+pin+"'");
+                    int balance = 0;
+                    while(rs.next()){
+                        if(rs.getString("type").equals("Deposit")){
+                            balance+=Integer.parseInt(rs.getString("amount"));
+                        }
+                        else{
+                            balance-=Integer.parseInt(rs.getString("amount"));
+                        }
+                    }
+                    if(balance<Integer.parseInt(getWithDraw)){
+                        JOptionPane.showMessageDialog(this,"Balance less than withdrawal invite","INVALID",JOptionPane.WARNING_MESSAGE);
+                    }
+                    else{
+                        String query = "insert into bank_transaction_records values ('"+pin+"','"+date+"','Withdrawal','"+getWithDraw+"');";
+                        c.s.executeUpdate(query);
+                        JOptionPane.showMessageDialog(null,"Rs "+getWithDraw+" Withdrawn Succesfully");
+                        dispose();
+                        new file5_atm_homepage(pin);
+                    }
                 }
             }catch(Exception p){
                 System.out.println(p);
             }
-            if(flag==0){
-                dispose();
-                new file5_atm_homepage(pin);
-            }
+
         }
         if (e.getSource()==back){
             dispose();

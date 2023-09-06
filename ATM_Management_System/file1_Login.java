@@ -39,7 +39,7 @@ public class file1_Login extends JFrame implements ActionListener {
         backGroundLabel.add(welcomeText);
 
         JLabel cardNo =  new JLabel("CARD NO : ");
-        cardNo.setBounds(130,160,200,100);
+        cardNo.setBounds(130,160,200,50);
         cardNo.setFont(new Font("MV Boli",Font.BOLD,20));
         cardNo.setForeground(Color.white);
         backGroundLabel.add(cardNo);
