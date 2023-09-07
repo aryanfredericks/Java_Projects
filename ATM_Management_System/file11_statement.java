@@ -15,7 +15,7 @@ public class file11_statement extends JFrame{
         setTitle("STATEMENT");
         getContentPane().setBackground(Color.WHITE);
 
-        JLabel bankStatement = new JLabel("HDFC BANK ");
+        JLabel bankStatement = new JLabel("MY BANK ");
         bankStatement.setBounds(150,30,150,100);
         bankStatement.setFont(new Font("Comic Sans", 1, 18));
         add(bankStatement);
