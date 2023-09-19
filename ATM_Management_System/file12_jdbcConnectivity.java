@@ -19,7 +19,7 @@ public class file12_jdbcConnectivity {
 //            Class.forName(com.mysql.cj.jdbc.Driver);
                 //this gets redundant when we add the mysql library
             //step 2
-            c = DriverManager.getConnection("jdbc:mysql:///bank_management","root","ArYAN/@21");
+            c = DriverManager.getConnection("jdbc:mysql:///bank_management","root","{your_password}");
 
             //step 3
             s=c.createStatement();
